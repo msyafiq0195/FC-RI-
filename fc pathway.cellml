@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="fc_pathway" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#">
+    <!-- units-->
+    <units name="s">
+        <unit units="second"/>
+    </units>
+    <units name="uM">
+        <unit prefix="micro" units="mole"/>
+        <unit exponent="-1" units="liter"/>
+    </units>
+    <units name="per_s">
+        <unit exponent="-1" units="s"/>
+    </units>
+    <units name="uM_per_s">
+        <unit units="uM"/>
+        <unit exponent="-1" units="s"/>
+    </units>
+    <units name="per_uM_per_s">
+        <unit exponent="-1" units="uM"/>
+        <unit exponent="-1" units="s"/>
+    </units>
+    <component name="main">
+        <variable initial_value="0" name="k_1" units="per_uM_per_s"/>
+        <variable initial_value="0" name="k_2" units="per_uM_per_s"/>
+        <variable initial_value="0" name="k_3" units="per_s"/>
+        <variable initial_value="0" name="k_4" units="per_s"/>
+        <variable initial_value="0" name="Lyn" units="uM"/>
+        <variable initial_value="0" name="pLyn" units="uM"/>
+        <variable initial_value="0" name="pLynFc" units="uM"/>
+        <variable initial_value="0" name="Fc" units="uM"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>Lyn</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <apply>
+                        <minus/>
+                        <ci>k_1</ci>
+                    </apply>
+                    <ci>Lyn</ci>
+                    <ci>P</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pLynFc</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <apply>
+                                <minus/>
+                                <ci>k_4</ci>
+                            </apply>
+                            <ci>pFc</ci>
+                            <ci>Lyn</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>k_2</ci>
+                            <ci>pLyn</ci>
+                            <ci>Fc</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_3</ci>
+                        <ci>pLynFc</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pLyn</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <ci>k_1</ci>
+                            <ci>Lyn</ci>
+                            <ci>p</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>k_2</ci>
+                            <ci>pLyn</ci>
+                            <ci>Fc</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_3</ci>
+                        <ci>pLynFc</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>
