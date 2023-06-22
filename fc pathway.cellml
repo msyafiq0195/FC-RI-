@@ -19,7 +19,11 @@
         <unit exponent="-1" units="uM"/>
         <unit exponent="-1" units="s"/>
     </units>
+    <component name="environment">
+        <variable name="t" public_interface="out" units="s"/>
+    </component>
     <component name="main">
+        <variable name="t" public_interface="in" units="s"/>
         <variable initial_value="0" name="k_1" units="per_uM_per_s"/>
         <variable initial_value="0" name="k_2" units="per_uM_per_s"/>
         <variable initial_value="0" name="k_3" units="per_s"/>
@@ -32,6 +36,7 @@
         <variable initial_value="0" name="k_10" units="per_s"/>
         <!-- units for k adapted from Dr.'s paper
  initial values kept at 0 for now-->
+        <variable initial_value="0" name="p" units="uM"/>
         <variable initial_value="0" name="Lyn" units="uM"/>
         <variable initial_value="0" name="pLyn" units="uM"/>
         <variable initial_value="0" name="pLynFc" units="uM"/>
@@ -360,4 +365,8 @@
             </apply>
         </math>
     </component>
+    <connection>
+        <map_components component_1="environment" component_2="main"/>
+        <map_variables variable_1="t" variable_2="t"/>
+    </connection>
 </model>
