@@ -24,28 +24,28 @@
     </component>
     <component name="main">
         <variable name="t" public_interface="in" units="s"/>
-        <variable initial_value="0" name="k_1" units="per_uM_per_s"/>
-        <variable initial_value="0" name="k_2" units="per_uM_per_s"/>
-        <variable initial_value="0" name="k_3" units="per_s"/>
-        <variable initial_value="0" name="k_4" units="per_s"/>
-        <variable initial_value="0" name="k_5" units="per_uM_per_s"/>
-        <variable initial_value="0" name="k_6" units="per_s"/>
-        <variable initial_value="0" name="k_7" units="per_s"/>
-        <variable initial_value="0" name="k_8" units="per_uM_per_s"/>
-        <variable initial_value="0" name="k_9" units="per_s"/>
-        <variable initial_value="0" name="k_10" units="per_s"/>
+        <variable initial_value="0.0035" name="k_1" units="per_uM_per_s"/>
+        <variable initial_value="54.7678" name="k_2" units="per_uM_per_s"/>
+        <variable initial_value="0.0031" name="k_3" units="per_s"/>
+        <variable initial_value="0.00817889" name="k_4" units="per_s"/>
+        <variable initial_value="10.5797" name="k_5" units="per_uM_per_s"/>
+        <variable initial_value="0.1174" name="k_6" units="per_s"/>
+        <variable initial_value="33.7157" name="k_7" units="per_s"/>
+        <variable initial_value="0.4143" name="k_8" units="per_uM_per_s"/>
+        <variable initial_value="0.481" name="k_9" units="per_s"/>
+        <variable initial_value="11.4185" name="k_10" units="per_s"/>
         <!-- units for k adapted from Dr.'s paper
- initial values kept at 0 for now-->
-        <variable initial_value="0" name="p" units="uM"/>
+ initial values from Faeder et al-->
+        <variable initial_value="0.4027" name="p" units="uM"/>
         <variable initial_value="0" name="Lyn" units="uM"/>
-        <variable initial_value="0" name="pLyn" units="uM"/>
+        <variable initial_value="0.0474" name="pLyn" units="uM"/>
         <variable initial_value="0" name="pLynFc" units="uM"/>
-        <variable initial_value="0" name="Syk" units="uM"/>
+        <variable initial_value="0.025" name="Syk" units="uM"/>
         <variable initial_value="0" name="pSyk" units="uM"/>
         <variable initial_value="0" name="pSykFc" units="uM"/>
-        <variable initial_value="0" name="Fc" units="uM"/>
+        <variable initial_value="0.0474" name="Fc" units="uM"/>
         <variable initial_value="0" name="pFc" units="uM"/>
-        <variable initial_value="0" name="Grb2" units="uM"/>
+        <variable initial_value="0.01" name="Grb2" units="uM"/>
         <variable initial_value="0" name="pGrb2" units="uM"/>
         <variable initial_value="0" name="pGrb2Syk" units="uM"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
