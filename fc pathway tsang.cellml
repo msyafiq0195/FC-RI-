@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="fc_pathway" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#">
+    <!-- units (taken from Dr.'s paper)-->
+    <units name="s">
+        <unit units="second"/>
+    </units>
+    <units name="uM">
+        <unit prefix="micro" units="mole"/>
+        <unit exponent="-1" units="liter"/>
+    </units>
+    <units name="per_s">
+        <unit exponent="-1" units="s"/>
+    </units>
+    <units name="uM_per_s">
+        <unit units="uM"/>
+        <unit exponent="-1" units="s"/>
+    </units>
+    <units name="per_uM_per_s">
+        <unit exponent="-1" units="uM"/>
+        <unit exponent="-1" units="s"/>
+    </units>
+    <component name="environment">
+        <variable name="t" public_interface="out" units="s"/>
+    </component>
+    <component name="main">
+        <variable name="t" public_interface="in" units="s"/>
+        <variable initial_value="1.0887" name="k_1" units="per_uM_per_s"/>
+        <variable initial_value="58.69" name="k_2" units="per_uM_per_s"/>
+        <variable initial_value="0.03" name="k_3" units="per_s"/>
+        <variable initial_value="0.00817889" name="k_4" units="per_s"/>
+        <variable initial_value="4.6" name="k_5" units="per_uM_per_s"/>
+        <variable initial_value="44.26" name="k_6" units="per_s"/>
+        <variable initial_value="10.89" name="k_7" units="per_s"/>
+        <variable initial_value="19.70" name="k_8" units="per_uM_per_s"/>
+        <variable initial_value="0.0016" name="k_9" units="per_s"/>
+        <variable initial_value="29.53" name="k_10" units="per_s"/>
+        <!-- units for k adapted from Dr.'s paper
+ initial values from Tsang et al-->
+        <variable initial_value="1.89585" name="p" units="uM"/>
+        <variable initial_value="0" name="Lyn" units="uM"/>
+        <variable initial_value="6.5" name="pLyn" units="uM"/>
+        <variable initial_value="0" name="pLynFc" units="uM"/>
+        <variable initial_value="0.005" name="Syk" units="uM"/>
+        <variable initial_value="0" name="pSyk" units="uM"/>
+        <variable initial_value="0" name="pSykFc" units="uM"/>
+        <variable initial_value="1" name="Fc" units="uM"/>
+        <variable initial_value="0" name="pFc" units="uM"/>
+        <variable initial_value="6.47" name="Grb2" units="uM"/>
+        <variable initial_value="0" name="pGrb2" units="uM"/>
+        <variable initial_value="0" name="pGrb2Syk" units="uM"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>Lyn</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>k_4</ci>
+                    <ci>pLynFc</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pLynFc</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <ci>k_2</ci>
+                            <ci>pLyn</ci>
+                            <ci>Fc</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>k_3</ci>
+                            <ci>pLynFc</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_4</ci>
+                        <ci>pLynFc</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pLyn</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <ci>k_1</ci>
+                            <ci>Lyn</ci>
+                            <ci>p</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>k_2</ci>
+                            <ci>pLyn</ci>
+                            <ci>Fc</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_3</ci>
+                        <ci>pLynFc</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>Fc</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <minus/>
+                            <ci>k_2</ci>
+                        </apply>
+                        <ci>pLyn</ci>
+                        <ci>Fc</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_3</ci>
+                        <ci>pLynFc</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_7</ci>
+                        <ci>pSykFc</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pFc</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <ci>k_4</ci>
+                            <ci>pLynFc</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>k_5</ci>
+                            <ci>pFc</ci>
+                            <ci>Syk</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_6</ci>
+                        <ci>pSykFc</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>Syk</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <minus/>
+                            <ci>k_5</ci>
+                        </apply>
+                        <ci>pFc</ci>
+                        <ci>Syk</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_6</ci>
+                        <ci>pSykFc</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_10</ci>
+                        <ci>pGrb2Syk</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pSykFc</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <ci>k_5</ci>
+                            <ci>pFc</ci>
+                            <ci>Syk</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>k_6</ci>
+                            <ci>pSykFc</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_7</ci>
+                        <ci>pSykFc</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pSyk</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <ci>k_7</ci>
+                            <ci>pSykFc</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>k_8</ci>
+                            <ci>pSyk</ci>
+                            <ci>Grb2</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_9</ci>
+                        <ci>pGrb2Syk</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>Grb2</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <minus/>
+                            <ci>k_8</ci>
+                        </apply>
+                        <ci>pSyk</ci>
+                        <ci>Grb2</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_9</ci>
+                        <ci>pGrb2Syk</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pGrb2Syk</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <ci>k_8</ci>
+                            <ci>pSyk</ci>
+                            <ci>Grb2</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>k_9</ci>
+                            <ci>pGrb2Syk</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_10</ci>
+                        <ci>pGrb2Syk</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>pGrb2</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>k_10</ci>
+                    <ci>pGrb2Syk</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+    <connection>
+        <map_components component_1="environment" component_2="main"/>
+        <map_variables variable_1="t" variable_2="t"/>
+    </connection>
+</model>
